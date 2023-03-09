@@ -1,0 +1,14 @@
+header {
+  height: 50px;
+  background-color: rgb(15, 15, 102);
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1440px;
+  height: 100%;
+  margin: auto;
+}
