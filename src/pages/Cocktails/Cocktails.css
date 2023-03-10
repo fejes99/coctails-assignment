@@ -12,33 +12,5 @@
 
 .cocktails-subtitle {
   font-size: 2rem;
-}
-
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 4rem;
-  padding-bottom: 5%;
-}
-
-.category-filter,
-.glass-filter {
-  width: 50%;
-}
-
-.category-filter {
-  text-align: right;
-}
-
-.glass-filter {
-  text-align: left;
-}
-
-.letter-filter {
-  margin-top: 1rem;
-  flex-basis: 100%;
-  display: flex;
-  justify-content: center;
+  font-weight: 400;
 }
