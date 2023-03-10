@@ -3,7 +3,7 @@ import './Header.css';
 import Navbar from './Navbar/Navbar';
 import Search from './Search/Search';
 
-const Header = () => {
+const Header: React.FC = () => {
   return (
     <header>
       <div className='header-wrapper'>

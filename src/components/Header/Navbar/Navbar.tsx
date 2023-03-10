@@ -18,7 +18,7 @@ const navigationItems: NavigationItem[] = [
       },
       {
         title: 'Non Alcoholic',
-        url: '/non-alcoholic',
+        url: '/non_alcoholic',
       },
     ],
   },
@@ -28,8 +28,10 @@ const navigationItems: NavigationItem[] = [
   },
 ];
 
-const Navbar = () => {
-  let navbarItems = navigationItems.map((item: NavigationItem) => <NavbarItem item={item} />);
+const Navbar: React.FC = () => {
+  let navbarItems = navigationItems.map((item: NavigationItem) => (
+    <NavbarItem key={item.title} item={item} />
+  ));
   return <div className='navbar'>{navbarItems}</div>;
 };
 

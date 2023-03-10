@@ -7,7 +7,7 @@ interface NavbarItemProps {
   item: NavigationItem;
 }
 
-const NavbarItem = ({ item: { title, url, submenu } }: NavbarItemProps) => {
+const NavbarItem: React.FC<NavbarItemProps> = ({ item: { title, url, submenu } }) => {
   return (
     <div className='navbar-item'>
       <NavLink to={url}>{title}</NavLink>
@@ -15,6 +15,7 @@ const NavbarItem = ({ item: { title, url, submenu } }: NavbarItemProps) => {
         <div className='submenu'>
           {submenu.map((subitem) => (
             <NavbarItem
+              key={subitem.title}
               item={{
                 ...subitem,
                 url: `${url}${subitem.url}`,

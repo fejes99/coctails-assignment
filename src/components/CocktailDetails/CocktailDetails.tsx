@@ -1,4 +1,4 @@
-const CocktailDetails = () => {
+const CocktailDetails: React.FC = () => {
   return <div>CocktailDetails</div>;
 };
 

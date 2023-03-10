@@ -1,6 +1,6 @@
 import './Search.css';
 
-const Search = () => {
+const Search: React.FC = () => {
   return <input className='search' type='text' placeholder='Search...' />;
 };
 
