@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useLocation } from 'react-router-dom';
+import { useSearchParams } from 'react-router-dom';
 import { Cocktail } from '../components/CocktailList/CocktailList';
 
 type CocktailType = 'alcoholic' | 'non_alcoholic';
@@ -15,20 +15,14 @@ const useFetchCocktails = (): FetchCocktailsResult => {
     cocktails: null,
     loading: true,
   });
-  const location = useLocation();
+  const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    const path = location.pathname;
-    const alcohol = path.substring(path.lastIndexOf('/') + 1) as CocktailType;
-
-    const searchParams = new URLSearchParams(location.search);
     const name = searchParams.get('name');
     const firstLetter = searchParams.get('firstLetter');
-    console.log('🚀 ~ file: useFetchCocktails.ts:27 ~ useEffect ~ firstLetter:', firstLetter);
     const category = searchParams.get('category');
-    console.log('🚀 ~ file: useFetchCocktails.ts:28 ~ useEffect ~ category:', category);
     const glass = searchParams.get('glass');
-    console.log('🚀 ~ file: useFetchCocktails.ts:30 ~ useEffect ~ glass:', glass);
+    const alcohol = searchParams.get('alcohol') as CocktailType;
 
     let url = '';
 
@@ -56,7 +50,7 @@ const useFetchCocktails = (): FetchCocktailsResult => {
       setResult({ cocktails: null, loading: false });
       console.log('cocktails not updated');
     }
-  }, [location]);
+  }, [searchParams]);
 
   return result;
 };

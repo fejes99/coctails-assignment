@@ -1,5 +1,5 @@
 import './CocktailList.css';
-import Loader from '../Loader/Loader';
+import Loader from '../../../components/Loader/Loader';
 import CocktailCard from './CocktailCard/CocktailCard';
 import useFetchCocktails from '../../hooks/useFetchCocktails';
 
@@ -23,6 +23,7 @@ const CocktailList: React.FC = () => {
     cocktails.map((cocktail: Cocktail) => (
       <CocktailCard
         key={cocktail.idDrink}
+        id={cocktail.idDrink}
         image={cocktail.strDrinkThumb}
         name={cocktail.strDrink}
         category={cocktail.strCategory}

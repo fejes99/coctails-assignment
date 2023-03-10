@@ -1,8 +1,8 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
-import Cocktails from './pages/Cocktails/Cocktails';
-import Ingredients from './pages/Ingredients/Ingredients';
+import Cocktails from './Cocktails/Cocktails';
+import Ingredients from './Ingredients/Ingredients';
 import Header from './components/Header/Header';
 
 const App: React.FC = () => {
