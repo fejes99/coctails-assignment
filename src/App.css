@@ -5,5 +5,20 @@
 .main {
   width: 100%;
   max-width: 1440px;
-  margin: 40px auto;
+  margin: 50px auto;
+}
+
+header {
+  height: 50px;
+  background-color: #002f5c;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1440px;
+  height: 100%;
+  margin: auto;
 }

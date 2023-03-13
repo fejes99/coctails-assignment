@@ -1,34 +1,21 @@
 import './CocktailList.css';
+import Cocktail from '../../Cocktails.d';
+import { useFetchCocktails } from '../../hooks/useFetchCocktails';
 import Loader from '../../../components/Loader/Loader';
 import CocktailCard from './CocktailCard/CocktailCard';
-import useFetchCocktails from '../../hooks/useFetchCocktails';
-
-export interface Cocktail {
-  idDrink: string;
-  strDrink: string;
-  strCategory?: string;
-  strGlass?: string;
-  strDrinkThumb: string;
-}
 
 const CocktailList: React.FC = () => {
   const { cocktails, loading } = useFetchCocktails();
 
   if (loading) return <Loader />;
-  if (!loading && !cocktails?.length)
-    return <div>No cocktails for that filter, please try other one</div>;
+  if (!cocktails?.length)
+    return <h3 className='cocktail-info'>No cocktails for that filter, please try other one</h3>;
 
-  const cocktailCards: JSX.Element[] | null =
+  let cocktailCards: JSX.Element[] | null = null;
+  cocktailCards =
     cocktails &&
     cocktails.map((cocktail: Cocktail) => (
-      <CocktailCard
-        key={cocktail.idDrink}
-        id={cocktail.idDrink}
-        image={cocktail.strDrinkThumb}
-        name={cocktail.strDrink}
-        category={cocktail.strCategory}
-        glass={cocktail.strGlass}
-      />
+      <CocktailCard cocktail={cocktail} key={cocktail.idDrink} />
     ));
 
   return <div className='cocktail-list'>{cocktailCards}</div>;

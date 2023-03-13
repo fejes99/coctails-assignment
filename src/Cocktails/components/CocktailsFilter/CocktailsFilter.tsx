@@ -1,5 +1,6 @@
 import React, { useCallback } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, useSearchParams, createSearchParams } from 'react-router-dom';
+import Search from './Search/Search';
 import LetterFilter from '../../../components/LetterFilter/LetterFilter';
 import Loader from '../../../components/Loader/Loader';
 import useFetchCategories, { Category } from '../../hooks/useFetchCategories';
@@ -15,9 +16,10 @@ type SelectOption = {
 const CocktailsFilter: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
+  const [searchParams] = useSearchParams();
 
-  const currentCategory = new URLSearchParams(location.search).get('category') ?? '';
-  const currentGlass = new URLSearchParams(location.search).get('glass') ?? '';
+  const currentCategory = searchParams.get('category') ?? '';
+  const currentGlass = searchParams.get('glass') ?? '';
 
   const { categories, loading: loadingCategories } = useFetchCategories();
   const { glasses, loading: loadingGlasses } = useFetchGlasses();
@@ -43,9 +45,32 @@ const CocktailsFilter: React.FC = () => {
   const categoryOptions = getCategoryOptions(categories);
   const glassOptions = getGlassOptions(glasses);
 
-  const handleOptionChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+  const handleOption = (event: React.ChangeEvent<HTMLSelectElement>): void => {
     const { name, value } = event.target;
-    navigate(`?${name}=${value}`, { replace: true });
+
+    searchParams.delete('id');
+
+    const newSearchParams = createSearchParams(searchParams.toString());
+    newSearchParams.set(name, value);
+
+    const newPathname = location.pathname.replace(/\/\d+$/, '');
+    const newUrl = `${newPathname}?${newSearchParams.toString()}`;
+
+    navigate(newUrl, { replace: true });
+  };
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const { name, value } = event.target;
+
+    searchParams.delete('id');
+
+    const newSearchParams = createSearchParams(searchParams.toString());
+    newSearchParams.set(name, value);
+
+    const newPathname = location.pathname.replace(/\/\d+$/, '');
+    const newUrl = `${newPathname}?${newSearchParams.toString()}`;
+
+    navigate(newUrl, { replace: true });
   };
 
   if (loadingCategories || loadingGlasses) {
@@ -54,8 +79,12 @@ const CocktailsFilter: React.FC = () => {
 
   return (
     <div className='filters'>
+      <div className='filters-title'>
+        <h1>Cocktails</h1>
+        <h2>Over 160 cocktails to choose</h2>
+      </div>
       <div className='category-filter'>
-        <select name='category' value={currentCategory} onChange={handleOptionChange}>
+        <select name='category' value={currentCategory} onChange={handleOption}>
           <option value=''>All Categories</option>
           {categoryOptions.map((option) => (
             <option key={option.value} value={option.value}>
@@ -65,7 +94,7 @@ const CocktailsFilter: React.FC = () => {
         </select>
       </div>
       <div className='glass-filter'>
-        <select name='glass' value={currentGlass} onChange={handleOptionChange}>
+        <select name='glass' value={currentGlass} onChange={handleOption}>
           <option value=''>All Glasses</option>
           {glassOptions.map((option) => (
             <option key={option.value} value={option.value}>
@@ -74,6 +103,10 @@ const CocktailsFilter: React.FC = () => {
           ))}
         </select>
       </div>
+      <div className='search-filter'>
+        <Search onChange={handleSearch} />
+      </div>
+
       <div className='letter-filter'>
         <LetterFilter />
       </div>

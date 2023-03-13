@@ -2,13 +2,18 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import './App.css';
 
 import Cocktails from './Cocktails/Cocktails';
+import Navbar from './components/Navbar/Navbar';
+
 import Ingredients from './Ingredients/Ingredients';
-import Header from './components/Header/Header';
 
 const App: React.FC = () => {
   return (
     <div className='App'>
-      <Header />
+      <header>
+        <div className='header-wrapper'>
+          <Navbar />
+        </div>
+      </header>
       <div className='main'>
         <Routes>
           <Route path='cocktails/*' element={<Cocktails />} />

@@ -1,39 +1,50 @@
-.cocktail-card {
+.ingredient-card {
   background-color: whitesmoke;
-  width: 22%;
-  height: 470px;
-  margin: 2rem 0rem;
+  width: 200px;
+  margin: 2rem 0.5rem;
+  padding: 5px;
   border: none;
   border-radius: 10px;
   transition: all 0.2s;
   transition-timing-function: ease-in;
 }
 
-.cocktail-card-small {
+.ingredient-card-small {
   height: 400px;
 }
 
-.cocktail-card:hover {
+.ingredient-card:hover {
   -webkit-box-shadow: 0px 20px 20px -1px rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0px 20px 20px -1px rgba(0, 0, 0, 0.1);
   box-shadow: 0px 20px 20px -1px rgba(0, 0, 0, 0.1);
 }
 
-.cocktail-card-img {
+.ingredient-card-img {
   width: 100%;
   margin-bottom: 10px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }
 
-.cocktail-card-name {
+.ingredient-card-name {
   font-weight: bold;
   font-size: 25px;
   padding-bottom: 10px;
 }
 
-.cocktail-card-data {
+.ingredient-card-data {
   margin: 20px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ingredient-card-type {
+  margin: 5px;
+  text-align: left;
+}
+
+.ingredient-card-alcohol {
+  margin: 5px;
+  text-align: left;
 }

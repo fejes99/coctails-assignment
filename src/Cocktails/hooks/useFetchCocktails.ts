@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useSearchParams } from 'react-router-dom';
-import { Cocktail } from '../components/CocktailList/CocktailList';
+import { useParams, useSearchParams } from 'react-router-dom';
+import Cocktail from '../Cocktails.d';
 
 type CocktailType = 'alcoholic' | 'non_alcoholic';
 
@@ -10,7 +10,12 @@ interface FetchCocktailsResult {
   loading: boolean;
 }
 
-const useFetchCocktails = (): FetchCocktailsResult => {
+interface FetchCocktailResult {
+  cocktail: Cocktail | null;
+  loading: boolean;
+}
+
+export const useFetchCocktails = (): FetchCocktailsResult => {
   const [result, setResult] = useState<FetchCocktailsResult>({
     cocktails: null,
     loading: true,
@@ -39,20 +44,28 @@ const useFetchCocktails = (): FetchCocktailsResult => {
     }
 
     if (url) {
-      axios.get(url).then((response) => {
-        setResult({ cocktails: response.data.drinks, loading: false });
-        console.log(
-          '🚀 ~ file: useFetchCocktails.ts:50 ~ axios.get ~ response.data.drinks:',
-          response.data.drinks
-        );
-      });
+      axios
+        .get(url)
+        .then((response) => setResult({ cocktails: response.data.drinks, loading: false }));
     } else {
       setResult({ cocktails: null, loading: false });
-      console.log('cocktails not updated');
     }
   }, [searchParams]);
 
   return result;
 };
 
-export default useFetchCocktails;
+export const useFetchCocktail = () => {
+  const [result, setResult] = useState<FetchCocktailResult>({
+    cocktail: null,
+    loading: true,
+  });
+  let { id } = useParams();
+
+  useEffect(() => {
+    axios
+      .get(`/lookup.php?i=${id}`)
+      .then((response) => setResult({ cocktail: response.data.drinks[0], loading: false }));
+  }, [id]);
+  return result;
+};
