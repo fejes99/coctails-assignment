@@ -1,0 +1,13 @@
+.ingredients-search {
+  align-items: center;
+  padding-bottom: 3%;
+  background-color: #002f5c;
+  color: white;
+}
+
+.ingredients-title {
+  padding-top: 5%;
+  font-size: 5rem;
+  text-transform: uppercase;
+  cursor: default;
+}

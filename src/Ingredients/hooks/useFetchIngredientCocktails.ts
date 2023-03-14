@@ -7,7 +7,7 @@ interface FetchIngredientCocktailsResult {
   loading: boolean;
 }
 
-export const useFetchIngredientCocktails = (id: string) => {
+export const useFetchIngredientCocktails = (id: string): FetchIngredientCocktailsResult => {
   const [result, setResult] = useState<FetchIngredientCocktailsResult>({
     cocktails: null,
     loading: true,

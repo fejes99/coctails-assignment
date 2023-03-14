@@ -9,10 +9,9 @@ const CocktailList: React.FC = () => {
 
   if (loading) return <Loader />;
   if (!cocktails?.length)
-    return <h3 className='cocktail-info'>No cocktails for that filter, please try other one</h3>;
+    return <h3 className='empty-warning'>No cocktails for that filter, please try other one</h3>;
 
-  let cocktailCards: JSX.Element[] | null = null;
-  cocktailCards =
+  let cocktailCards: JSX.Element[] =
     cocktails &&
     cocktails.map((cocktail: Cocktail) => (
       <CocktailCard cocktail={cocktail} key={cocktail.idDrink} />

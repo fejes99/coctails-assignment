@@ -10,7 +10,7 @@ interface FetchCategoriesResult {
   loading: boolean;
 }
 
-const useFetchCategories = () => {
+const useFetchCategories = (): FetchCategoriesResult => {
   const [result, setResult] = useState<FetchCategoriesResult>({
     categories: null,
     loading: true,

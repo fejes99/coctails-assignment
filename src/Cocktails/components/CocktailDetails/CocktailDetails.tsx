@@ -1,7 +1,8 @@
+import { useNavigate } from 'react-router';
+
 import './CocktailDetails.css';
 import Loader from '../../../components/Loader/Loader';
 import { useFetchCocktail } from '../../hooks/useFetchCocktails';
-import { useNavigate } from 'react-router';
 
 interface StringKeyObject {
   [key: string]: any;
@@ -12,18 +13,18 @@ const CocktailDetails: React.FC = () => {
   const { cocktail, loading } = useFetchCocktail();
 
   const renderIngredients = (cocktail: StringKeyObject) => {
-    const ingredients = [];
-    let i = 1;
-    while (cocktail[`strIngredient${i}`]) {
-      const ingredientName = cocktail[`strIngredient${i}`];
-      const ingredientMeasure = cocktail[`strMeasure${i}`];
-      ingredients.push(
-        <div key={i} className='cocktail-ingredient-name'>
-          <span className='pointer-hover'>{ingredientName}</span> {ingredientMeasure}
-        </div>
-      );
-      i++;
-    }
+    const ingredients = Object.keys(cocktail)
+      .filter((key) => key.startsWith('strIngredient'))
+      .map((ingredientKey, i) => {
+        const ingredientName = cocktail[ingredientKey];
+        const ingredientMeasure = cocktail[`strMeasure${i + 1}`];
+        return (
+          <div key={i} className='cocktail-ingredient-name'>
+            {ingredientName} {ingredientMeasure}
+          </div>
+        );
+      });
+
     return (
       <div className='cocktail-ingredients'>
         <div className='cocktail-ingredients-title'>Ingredients:</div>
@@ -42,18 +43,27 @@ const CocktailDetails: React.FC = () => {
   const navigateGlass = () => navigate(`/cocktails/${typeUrl}?glass=${cocktail?.strGlass}`);
 
   if (loading) return <Loader />;
+
   return (
     <div className='cocktail-details'>
       <h3 className='cocktail-title'>{cocktail?.strDrink}</h3>
-      <div className='cocktail-type pointer-hover' onClick={navigateAlcohol}>
-        {cocktail?.strAlcoholic}
+      <div className='cocktail-type'>
+        <span className='pointer-hover' onClick={navigateAlcohol}>
+          {cocktail?.strAlcoholic}
+        </span>
       </div>
       <div className='detail-rows'>
-        <div className='cocktail-category' onClick={navigateCategory}>
-          <strong>Category:</strong> <span className='pointer-hover'>{cocktail?.strCategory}</span>
+        <div className='cocktail-category'>
+          <strong>Category:</strong>{' '}
+          <span className='pointer-hover' onClick={navigateCategory}>
+            {cocktail?.strCategory}
+          </span>
         </div>
-        <div className='cocktail-glass' onClick={navigateGlass}>
-          <strong>Glass:</strong> <span className='pointer-hover'>{cocktail?.strGlass}</span>
+        <div className='cocktail-glass'>
+          <strong>Glass:</strong>{' '}
+          <span className='pointer-hover' onClick={navigateGlass}>
+            {cocktail?.strGlass}
+          </span>
         </div>
       </div>
       <div className='detail-rows'>

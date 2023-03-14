@@ -1,13 +1,14 @@
 import React from 'react';
 import { useNavigate } from 'react-router';
-import Cocktail from '../../../Cocktails.d';
+
 import './CocktailCard.css';
+import Cocktail from '../../../Cocktails.d';
 
-interface CocktailCardProps {
+type Props = {
   cocktail: Cocktail;
-}
+};
 
-const CocktailCard: React.FC<CocktailCardProps> = ({
+const CocktailCard: React.FC<Props> = ({
   cocktail: {
     idDrink: id,
     strDrinkThumb: image,
@@ -18,15 +19,13 @@ const CocktailCard: React.FC<CocktailCardProps> = ({
 }) => {
   const navigate = useNavigate();
 
-  const containerClassName = `cocktail-card${!category && !glass ? ' cocktail-card-small' : ''}`;
-
-  const navigateToCocktail = () => {
-    navigate(`/cocktails/${id}`);
-  };
+  const navigateToCocktail = () => navigate(`/cocktails/${id}`);
 
   const navigateToCategory = () => navigate(`/cocktails/alcoholic?category=${category}`);
 
   const navigateToGlass = () => navigate(`/cocktails/alcoholic?glass=${glass}`);
+
+  const containerClassName = `cocktail-card${!category && !glass ? ' cocktail-card-small' : ''}`;
 
   return (
     <div className={containerClassName}>

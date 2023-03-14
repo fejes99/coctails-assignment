@@ -2,11 +2,11 @@ import React, { useCallback } from 'react';
 import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 
 import './CocktailsFilter.css';
-import Loader from '../../../components/Loader/Loader';
-import Search from './Search/Search';
-import LetterFilter from '../../../components/LetterFilter/LetterFilter';
 import useFetchCategories, { Category } from '../../hooks/useFetchCategories';
 import useFetchGlasses, { Glass } from '../../hooks/useFetchGlasses';
+import Loader from '../../../components/Loader/Loader';
+import Search from '../../../components/Search/Search';
+import LetterFilter from '../../../components/LetterFilter/LetterFilter';
 
 type SelectOption = {
   label: string;
@@ -18,11 +18,11 @@ const CocktailsFilter: React.FC = () => {
   const location = useLocation();
   const [searchParams] = useSearchParams();
 
-  const currentCategory = searchParams.get('category') ?? '';
-  const currentGlass = searchParams.get('glass') ?? '';
-
   const { categories, loading: loadingCategories } = useFetchCategories();
   const { glasses, loading: loadingGlasses } = useFetchGlasses();
+
+  const currentCategory = searchParams.get('category') ?? '';
+  const currentGlass = searchParams.get('glass') ?? '';
 
   const getCategoryOptions = useCallback((categories: Category[] | null): SelectOption[] => {
     if (!categories) return [];
@@ -47,7 +47,6 @@ const CocktailsFilter: React.FC = () => {
 
   const handleOption = (event: React.ChangeEvent<HTMLSelectElement>): void => {
     const { name, value } = event.target;
-
     searchParams.delete('id');
 
     const newPathname = location.pathname.replace(/\/\d+$/, '');
@@ -58,7 +57,6 @@ const CocktailsFilter: React.FC = () => {
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target;
-
     searchParams.delete('id');
 
     const newPathname = location.pathname.replace(/\/\d+$/, '');

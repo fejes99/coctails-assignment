@@ -1,16 +1,16 @@
 .cocktail-card {
-  background-color: whitesmoke;
-  width: 20%;
-  height: 420px;
-  margin: 2rem 0.5rem;
+  width: 23%;
+  height: 480px;
+  margin: 2rem 0.5rem 2rem 0;
   border: none;
   border-radius: 10px;
   transition: all 0.2s;
   transition-timing-function: ease-in;
+  box-sizing: border-box;
 }
 
 .cocktail-card-small {
-  height: 400px;
+  height: 430px;
 }
 
 .cocktail-card:hover {

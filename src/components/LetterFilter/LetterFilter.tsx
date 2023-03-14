@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate, useLocation, useSearchParams, createSearchParams } from 'react-router-dom';
+
 import './LetterFilter.css';
 
 const LetterFilter: React.FC = () => {
@@ -7,14 +8,14 @@ const LetterFilter: React.FC = () => {
   const location = useLocation();
   const [searchParams] = useSearchParams();
 
-  const setFirstLetter = (letter: string) => {
+  const setFirstLetter = (letter: string): void => {
     searchParams.delete('id');
 
     const newSearchParams = createSearchParams(searchParams.toString());
     newSearchParams.set('firstLetter', letter);
 
-    const newPathname = location.pathname.replace(/\/\d+$/, '');
-    const newUrl = `${newPathname}?firstLetter=${letter}`;
+    const newPathname: string = location.pathname.replace(/\/\d+$/, '');
+    const newUrl: string = `${newPathname}?firstLetter=${letter}`;
 
     navigate(newUrl, { replace: true });
   };

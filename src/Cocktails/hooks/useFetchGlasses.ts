@@ -10,7 +10,7 @@ interface FetchGlassesResult {
   loading: boolean;
 }
 
-const useFetchGlasses = () => {
+const useFetchGlasses = (): FetchGlassesResult => {
   const [result, setResult] = useState<FetchGlassesResult>({
     glasses: null,
     loading: true,

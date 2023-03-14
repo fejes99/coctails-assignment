@@ -3,11 +3,11 @@ import { NavLink } from 'react-router-dom';
 import { NavigationItem } from '../Navbar';
 import './NavbarItem.css';
 
-interface NavbarItemProps {
+type Props = {
   item: NavigationItem;
-}
+};
 
-const NavbarItem: React.FC<NavbarItemProps> = ({ item: { title, url, submenu } }) => {
+const NavbarItem: React.FC<Props> = ({ item: { title, url, submenu } }) => {
   return (
     <div className='navbar-item'>
       <NavLink to={url}>{title}</NavLink>

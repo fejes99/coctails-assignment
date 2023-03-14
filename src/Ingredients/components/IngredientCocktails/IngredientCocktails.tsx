@@ -9,10 +9,6 @@ type Props = {
 
 const IngredientCocktails = ({ id }: Props) => {
   const { cocktails, loading } = useFetchIngredientCocktails(id);
-  console.log(
-    '🚀 ~ file: IngredientCocktails.tsx:11 ~ IngredientCocktails ~ cocktails:',
-    cocktails
-  );
 
   if (loading) return <Loader />;
 

@@ -52,7 +52,7 @@ export const useFetchCocktails = (): FetchCocktailsResult => {
   return result;
 };
 
-export const useFetchCocktail = () => {
+export const useFetchCocktail = (): FetchCocktailResult => {
   const [result, setResult] = useState<FetchCocktailResult>({
     cocktail: null,
     loading: true,

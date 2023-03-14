@@ -54,3 +54,7 @@
   font-size: 1.2rem;
   text-align: start;
 }
+
+.cocktail-ingredient-name {
+  cursor: default;
+}

@@ -1,9 +1,12 @@
 .cocktail-list {
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 0 auto;
+  max-width: 1440px;
+  padding-right: 0;
 }
 
-.cocktail-info {
+.empty-warning {
   margin-top: 20px;
 }

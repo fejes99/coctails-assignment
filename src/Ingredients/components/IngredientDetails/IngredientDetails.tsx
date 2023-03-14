@@ -3,9 +3,7 @@ import { useFetchIngredientById } from '../../hooks/useFetchIngredients';
 import IngredientCocktails from '../IngredientCocktails/IngredientCocktails';
 import './IngredientDetails.css';
 
-type Props = {};
-
-const IngredientDetails = (props: Props) => {
+const IngredientDetails = () => {
   const { ingredient, loading } = useFetchIngredientById();
 
   if (loading) return <Loader />;

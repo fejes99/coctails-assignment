@@ -8,24 +8,33 @@ interface FetchIngredientsResult {
   loading: boolean;
 }
 
-export const useFetchIngredients = () => {
+interface FetchIngredientResult {
+  ingredient: Ingredient | null;
+  loading: boolean;
+}
+
+export const useFetchIngredients = (): FetchIngredientsResult => {
   const [result, setResult] = useState<FetchIngredientsResult>({
     ingredients: null,
     loading: true,
   });
 
   useEffect(() => {
+    const fetchIngredient = async (name: string = '') => {
+      const response = await axios.get(`/search.php?i=${name}`);
+      return response.data.ingredients[0];
+    };
+
     axios
       .get('/list.php?i=list')
       .then((response) => response.data.drinks)
       .then((ingredients) => {
-        const promises = ingredients.map((ingredient: any) => {
-          return fetchIngredient(ingredient?.strIngredient1).then((ingredientData) => {
-            return {
-              ...ingredient,
-              ...ingredientData,
-            };
-          });
+        const promises = ingredients.map(async (ingredient: Ingredient) => {
+          const ingredientData = await fetchIngredient(ingredient?.strIngredient1);
+          return {
+            ...ingredient,
+            ...ingredientData,
+          };
         });
         return Promise.all(promises);
       })
@@ -41,18 +50,7 @@ export const useFetchIngredients = () => {
   return result;
 };
 
-export const fetchIngredient = (name: string = '') => {
-  return axios.get(`/search.php?i=${name}`).then((response) => {
-    return response.data.ingredients[0];
-  });
-};
-
-interface FetchIngredientResult {
-  ingredient: Ingredient | null;
-  loading: boolean;
-}
-
-export const useFetchIngredientById = () => {
+export const useFetchIngredientById = (): FetchIngredientResult => {
   const [result, setResult] = useState<FetchIngredientResult>({
     ingredient: null,
     loading: true,

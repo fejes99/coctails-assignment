@@ -4,3 +4,7 @@
   flex-wrap: wrap;
   background-color: antiquewhite;
 }
+
+.ingredients-warning {
+  padding: 40px;
+}

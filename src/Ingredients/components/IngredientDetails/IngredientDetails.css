@@ -17,6 +17,7 @@
   font-size: 1.5rem;
   font-style: italic;
   margin: 5px;
+  cursor: default;
 }
 
 .ingredient-alcohol {
@@ -36,4 +37,5 @@
   padding: 50px;
   font-size: 1.2rem;
   text-align: start;
+  cursor: default;
 }

@@ -2,22 +2,16 @@ import { useNavigate } from 'react-router';
 import { Ingredient } from '../../../Ingredients.d';
 import './IngredientCard.css';
 
-type IngredientCardProps = {
+type Props = {
   ingredient: Ingredient;
 };
 
-const IngredientCard: React.FC<IngredientCardProps> = ({
-  ingredient: {
-    idIngredient: id,
-    strIngredient: name,
-    strType: type,
-    strAlcohol: alcohol,
-    image = '',
-  },
+const IngredientCard: React.FC<Props> = ({
+  ingredient: { idIngredient: id, strIngredient: name, strType: type, strAlcohol: alcohol },
 }) => {
   const navigate = useNavigate();
 
-  const navigateToIngredient = () => navigate(`${id}`);
+  const navigateToIngredient = (): void => navigate(`${id}`);
 
   return (
     <div className='ingredient-card' onClick={navigateToIngredient}>
