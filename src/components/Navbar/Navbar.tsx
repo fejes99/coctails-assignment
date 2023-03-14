@@ -10,7 +10,7 @@ export interface NavigationItem {
 const navigationItems: NavigationItem[] = [
   {
     title: 'Cocktails',
-    url: './cocktails',
+    url: '/cocktails',
     submenu: [
       {
         title: 'Alcoholic',

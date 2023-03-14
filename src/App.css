@@ -22,3 +22,21 @@ header {
   height: 100%;
   margin: auto;
 }
+
+.detail-rows {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin-top: 40px;
+}
+
+.detail-columns {
+  display: flex;
+  flex-direction: column;
+  padding: 0 50px;
+}
+
+.pointer-hover:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}

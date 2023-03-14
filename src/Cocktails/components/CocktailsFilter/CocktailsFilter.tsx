@@ -1,12 +1,12 @@
 import React, { useCallback } from 'react';
-import { useNavigate, useLocation, useSearchParams, createSearchParams } from 'react-router-dom';
-import Search from './Search/Search';
-import LetterFilter from '../../../components/LetterFilter/LetterFilter';
-import Loader from '../../../components/Loader/Loader';
-import useFetchCategories, { Category } from '../../hooks/useFetchCategories';
-import useFetchGlasses, { Glass } from '../../hooks/useFetchGlasses';
+import { useNavigate, useLocation, useSearchParams } from 'react-router-dom';
 
 import './CocktailsFilter.css';
+import Loader from '../../../components/Loader/Loader';
+import Search from './Search/Search';
+import LetterFilter from '../../../components/LetterFilter/LetterFilter';
+import useFetchCategories, { Category } from '../../hooks/useFetchCategories';
+import useFetchGlasses, { Glass } from '../../hooks/useFetchGlasses';
 
 type SelectOption = {
   label: string;
@@ -50,11 +50,8 @@ const CocktailsFilter: React.FC = () => {
 
     searchParams.delete('id');
 
-    const newSearchParams = createSearchParams(searchParams.toString());
-    newSearchParams.set(name, value);
-
     const newPathname = location.pathname.replace(/\/\d+$/, '');
-    const newUrl = `${newPathname}?${newSearchParams.toString()}`;
+    const newUrl = `${newPathname}?${name}=${value}`;
 
     navigate(newUrl, { replace: true });
   };
@@ -64,11 +61,9 @@ const CocktailsFilter: React.FC = () => {
 
     searchParams.delete('id');
 
-    const newSearchParams = createSearchParams(searchParams.toString());
-    newSearchParams.set(name, value);
-
     const newPathname = location.pathname.replace(/\/\d+$/, '');
-    const newUrl = `${newPathname}?${newSearchParams.toString()}`;
+    let newUrl = `${newPathname}`;
+    if (value) newUrl = `${newPathname}?${name}=${value}`;
 
     navigate(newUrl, { replace: true });
   };

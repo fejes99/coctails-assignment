@@ -1,12 +1,14 @@
 import './CocktailDetails.css';
 import Loader from '../../../components/Loader/Loader';
 import { useFetchCocktail } from '../../hooks/useFetchCocktails';
+import { useNavigate } from 'react-router';
 
 interface StringKeyObject {
   [key: string]: any;
 }
 
 const CocktailDetails: React.FC = () => {
+  const navigate = useNavigate();
   const { cocktail, loading } = useFetchCocktail();
 
   const renderIngredients = (cocktail: StringKeyObject) => {
@@ -17,7 +19,7 @@ const CocktailDetails: React.FC = () => {
       const ingredientMeasure = cocktail[`strMeasure${i}`];
       ingredients.push(
         <div key={i} className='cocktail-ingredient-name'>
-          {ingredientName} {ingredientMeasure}
+          <span className='pointer-hover'>{ingredientName}</span> {ingredientMeasure}
         </div>
       );
       i++;
@@ -30,22 +32,33 @@ const CocktailDetails: React.FC = () => {
     );
   };
 
+  let typeUrl = cocktail?.strAlcoholic === 'Non alcoholic' ? 'non_alcoholic' : 'alcoholic';
+
+  const navigateAlcohol = () => navigate(`/${cocktail?.strAlcoholic}`);
+
+  const navigateCategory = () =>
+    navigate(`/cocktails/${typeUrl}?category=${cocktail?.strCategory}`);
+
+  const navigateGlass = () => navigate(`/cocktails/${typeUrl}?glass=${cocktail?.strGlass}`);
+
   if (loading) return <Loader />;
   return (
     <div className='cocktail-details'>
       <h3 className='cocktail-title'>{cocktail?.strDrink}</h3>
-      <div className='cocktail-type'>{cocktail?.strAlcoholic}</div>
-      <div className='cocktail-rows'>
-        <div className='cocktail-category'>
-          <strong>Category:</strong> {cocktail?.strCategory}
+      <div className='cocktail-type pointer-hover' onClick={navigateAlcohol}>
+        {cocktail?.strAlcoholic}
+      </div>
+      <div className='detail-rows'>
+        <div className='cocktail-category' onClick={navigateCategory}>
+          <strong>Category:</strong> <span className='pointer-hover'>{cocktail?.strCategory}</span>
         </div>
-        <div className='cocktail-glass'>
-          <strong>Glass:</strong> {cocktail?.strGlass}
+        <div className='cocktail-glass' onClick={navigateGlass}>
+          <strong>Glass:</strong> <span className='pointer-hover'>{cocktail?.strGlass}</span>
         </div>
       </div>
-      <div className='cocktail-rows'>
+      <div className='detail-rows'>
         <img src={cocktail?.strDrinkThumb} alt='Cocktail' className='cocktail-img' />
-        <div className='cocktail-columns'>
+        <div className='detail-columns'>
           <div className='cocktail-preparation'>
             <strong>Preparation:</strong> {cocktail?.strInstructions}
           </div>

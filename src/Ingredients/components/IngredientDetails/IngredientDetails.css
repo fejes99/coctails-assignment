@@ -1,0 +1,39 @@
+.ingredient-details {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(247, 248, 208);
+  margin: 50px 0;
+  padding: 5% 0;
+}
+
+.ingredient-title {
+  font-size: 5rem;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.ingredient-type,
+.ingredient-alcohol {
+  font-size: 1.5rem;
+  font-style: italic;
+  margin: 5px;
+}
+
+.ingredient-alcohol {
+  font-size: 1.5rem;
+  font-style: italic;
+}
+
+.ingredient-img {
+  flex-basis: 50%;
+  margin-left: 50px;
+  max-width: 500px;
+  max-height: 500px;
+  border-radius: 5%;
+}
+
+.ingredient-description {
+  padding: 50px;
+  font-size: 1.2rem;
+  text-align: start;
+}

@@ -14,7 +14,7 @@ const LetterFilter: React.FC = () => {
     newSearchParams.set('firstLetter', letter);
 
     const newPathname = location.pathname.replace(/\/\d+$/, '');
-    const newUrl = `${newPathname}?${newSearchParams.toString()}`;
+    const newUrl = `${newPathname}?firstLetter=${letter}`;
 
     navigate(newUrl, { replace: true });
   };

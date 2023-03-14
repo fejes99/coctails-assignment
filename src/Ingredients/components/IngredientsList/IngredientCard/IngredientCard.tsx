@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router';
 import { Ingredient } from '../../../Ingredients.d';
 import './IngredientCard.css';
 
@@ -14,8 +15,12 @@ const IngredientCard: React.FC<IngredientCardProps> = ({
     image = '',
   },
 }) => {
+  const navigate = useNavigate();
+
+  const navigateToIngredient = () => navigate(`${id}`);
+
   return (
-    <div className='ingredient-card'>
+    <div className='ingredient-card' onClick={navigateToIngredient}>
       <img
         src={`https://www.thecocktaildb.com/images/ingredients/${name}.png`}
         alt='Ingredient'
@@ -23,12 +28,16 @@ const IngredientCard: React.FC<IngredientCardProps> = ({
       />
       <div className='ingredient-card-name'>{name}</div>
       <div className='ingredient-card-data'>
-        <div className='ingredient-card-type'>
-          <strong>Type:</strong> {type}
-        </div>
-        <div className='ingredient-card-alcohol'>
-          <strong>Alcohol:</strong> {alcohol}
-        </div>
+        {type && (
+          <div className='ingredient-card-type'>
+            <strong>Type:</strong> {type}
+          </div>
+        )}
+        {alcohol && (
+          <div className='ingredient-card-alcohol'>
+            <strong>Alcohol:</strong> {alcohol}
+          </div>
+        )}
       </div>
     </div>
   );

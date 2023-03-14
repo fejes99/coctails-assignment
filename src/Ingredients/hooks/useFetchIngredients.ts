@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { Ingredient } from './../Ingredients.d';
 
 interface FetchIngredientsResult {
@@ -37,11 +38,33 @@ export const useFetchIngredients = () => {
       });
   }, []);
 
-  const fetchIngredient = (name: string = '') => {
-    return axios.get(`/search.php?i=${name}`).then((response) => {
-      return response.data.ingredients[0];
-    });
-  };
+  return result;
+};
+
+export const fetchIngredient = (name: string = '') => {
+  return axios.get(`/search.php?i=${name}`).then((response) => {
+    return response.data.ingredients[0];
+  });
+};
+
+interface FetchIngredientResult {
+  ingredient: Ingredient | null;
+  loading: boolean;
+}
+
+export const useFetchIngredientById = () => {
+  const [result, setResult] = useState<FetchIngredientResult>({
+    ingredient: null,
+    loading: true,
+  });
+
+  let { id } = useParams();
+
+  useEffect(() => {
+    axios
+      .get(`/lookup.php?iid=${id}`)
+      .then((response) => setResult({ ingredient: response.data.ingredients[0], loading: false }));
+  }, [id]);
 
   return result;
 };

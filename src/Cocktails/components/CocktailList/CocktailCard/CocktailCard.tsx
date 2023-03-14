@@ -20,15 +20,17 @@ const CocktailCard: React.FC<CocktailCardProps> = ({
 
   const containerClassName = `cocktail-card${!category && !glass ? ' cocktail-card-small' : ''}`;
 
-  const navigateToCocktail = () => navigate(`${id}`);
+  const navigateToCocktail = () => {
+    navigate(`/cocktails/${id}`);
+  };
 
-  const navigateToCategory = () => {};
+  const navigateToCategory = () => navigate(`/cocktails/alcoholic?category=${category}`);
 
-  const navigateToGlass = () => {};
+  const navigateToGlass = () => navigate(`/cocktails/alcoholic?glass=${glass}`);
 
   return (
     <div className={containerClassName}>
-      <img className='cocktail-card-img' onClick={navigateToCocktail} alt='cocktail' src={image} />
+      <img className='cocktail-card-img' alt='cocktail' src={image} onClick={navigateToCocktail} />
       <div className='cocktail-card-name' onClick={navigateToCocktail}>
         {name}
       </div>

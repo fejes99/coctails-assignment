@@ -9,10 +9,9 @@ const Cocktails: React.FC = () => {
       <CocktailsFilter />
       <Routes>
         <Route path='/' element={<Navigate to='alcoholic' />} />
-        <Route path='alcoholic/*' element={<CocktailList />} />
-        <Route path='alcoholic/:id' element={<CocktailDetails />} />
-        <Route path='non_alcoholic/' element={<CocktailList />} />
-        <Route path='non_alcoholic/:id' element={<CocktailDetails />} />
+        <Route path='alcoholic' element={<CocktailList />} />
+        <Route path='non_alcoholic' element={<CocktailList />} />
+        <Route path=':id' element={<CocktailDetails />} />
       </Routes>
     </>
   );
