@@ -1,7 +1,7 @@
 .cocktail-details {
   display: flex;
   flex-direction: column;
-  background-color: rgb(247, 248, 208);
+  background-color: rgb(250, 235, 250);
   margin: 50px 0;
   padding: 5% 0;
 }
