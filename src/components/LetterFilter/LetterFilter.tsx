@@ -11,16 +11,15 @@ const LetterFilter: React.FC = () => {
   const setFirstLetter = (letter: string): void => {
     searchParams.delete('id');
 
-    const newSearchParams = createSearchParams(searchParams.toString());
+    const newSearchParams: URLSearchParams = createSearchParams(searchParams.toString());
     newSearchParams.set('firstLetter', letter);
 
     const newPathname: string = location.pathname.replace(/\/\d+$/, '');
-    const newUrl: string = `${newPathname}?firstLetter=${letter}`;
 
-    navigate(newUrl, { replace: true });
+    navigate(`${newPathname}?firstLetter=${letter}`, { replace: true });
   };
 
-  const letters = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
+  const letters: string[] = Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i));
 
   return (
     <div className='letter-container'>

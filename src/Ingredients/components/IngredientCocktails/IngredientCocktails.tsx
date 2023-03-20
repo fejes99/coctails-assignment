@@ -7,7 +7,7 @@ type Props = {
   id: string;
 };
 
-const IngredientCocktails = ({ id }: Props) => {
+const IngredientCocktails: React.FC<Props> = ({ id }) => {
   const { cocktails, loading } = useFetchIngredientCocktails(id);
 
   if (loading) return <Loader />;

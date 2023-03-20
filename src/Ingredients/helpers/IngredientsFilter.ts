@@ -6,7 +6,7 @@ type Props = {
 };
 
 export const ingredientsFilter = ({ ingredients = [], query }: Props): Ingredient[] => {
-  let filteredIngredients = ingredients?.filter((ingredient) =>
+  let filteredIngredients: Ingredient[] | undefined = ingredients?.filter((ingredient) =>
     ingredient.strIngredient1?.toLowerCase().includes(query.toLowerCase())
   );
 

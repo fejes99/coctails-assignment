@@ -19,13 +19,15 @@ const CocktailCard: React.FC<Props> = ({
 }) => {
   const navigate = useNavigate();
 
-  const navigateToCocktail = () => navigate(`/cocktails/${id}`);
+  const navigateToCocktail = (): void => navigate(`/cocktails/${id}`);
 
-  const navigateToCategory = () => navigate(`/cocktails/alcoholic?category=${category}`);
+  const navigateToCategory = (): void => navigate(`/cocktails/alcoholic?category=${category}`);
 
-  const navigateToGlass = () => navigate(`/cocktails/alcoholic?glass=${glass}`);
+  const navigateToGlass = (): void => navigate(`/cocktails/alcoholic?glass=${glass}`);
 
-  const containerClassName = `cocktail-card${!category && !glass ? ' cocktail-card-small' : ''}`;
+  const containerClassName: string = `cocktail-card${
+    !category && !glass ? ' cocktail-card-small' : ''
+  }`;
 
   return (
     <div className={containerClassName}>

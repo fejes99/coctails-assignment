@@ -5,8 +5,5 @@
   width: 220px;
   font-size: 18px;
   border: 1px solid white;
-}
-
-.search:focus-visible {
-  outline-width: 0;
+  outline: 0;
 }

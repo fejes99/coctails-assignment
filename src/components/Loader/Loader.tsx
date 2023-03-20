@@ -1,7 +1,7 @@
 import React from 'react';
 import { BeatLoader } from 'react-spinners';
 
-const Loader = () => {
+const Loader: React.FC = () => {
   return (
     <div className='container'>
       <BeatLoader color='#353a40' />

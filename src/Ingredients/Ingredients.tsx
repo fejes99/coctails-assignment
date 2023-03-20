@@ -1,7 +1,8 @@
 import { Route, Routes } from 'react-router';
+
 import './Ingredients.css';
-import IngredientDetails from './components/IngredientDetails/IngredientDetails';
 import IngredientsList from './components/IngredientsList/IngredientsList';
+import IngredientDetails from './components/IngredientDetails/IngredientDetails';
 
 const Ingredients: React.FC = () => {
   return (

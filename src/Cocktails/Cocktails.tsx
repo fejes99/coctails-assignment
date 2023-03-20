@@ -1,4 +1,5 @@
 import { Navigate, Routes, Route } from 'react-router-dom';
+
 import CocktailsFilter from './components/CocktailsFilter/CocktailsFilter';
 import CocktailList from './components/CocktailList/CocktailList';
 import CocktailDetails from './components/CocktailDetails/CocktailDetails';

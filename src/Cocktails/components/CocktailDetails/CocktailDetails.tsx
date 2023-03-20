@@ -12,7 +12,7 @@ const CocktailDetails: React.FC = () => {
   const navigate = useNavigate();
   const { cocktail, loading } = useFetchCocktail();
 
-  const renderIngredients = (cocktail: StringKeyObject) => {
+  const renderIngredients = (cocktail: StringKeyObject): JSX.Element => {
     const ingredients = Object.keys(cocktail)
       .filter((key) => key.startsWith('strIngredient'))
       .map((ingredientKey, i) => {
@@ -33,14 +33,14 @@ const CocktailDetails: React.FC = () => {
     );
   };
 
-  let typeUrl = cocktail?.strAlcoholic === 'Non alcoholic' ? 'non_alcoholic' : 'alcoholic';
+  let typeUrl: string = cocktail?.strAlcoholic === 'Non alcoholic' ? 'non_alcoholic' : 'alcoholic';
 
-  const navigateAlcohol = () => navigate(`/${cocktail?.strAlcoholic}`);
+  const navigateAlcohol = (): void => navigate(`/${cocktail?.strAlcoholic}`);
 
-  const navigateCategory = () =>
+  const navigateCategory = (): void =>
     navigate(`/cocktails/${typeUrl}?category=${cocktail?.strCategory}`);
 
-  const navigateGlass = () => navigate(`/cocktails/${typeUrl}?glass=${cocktail?.strGlass}`);
+  const navigateGlass = (): void => navigate(`/cocktails/${typeUrl}?glass=${cocktail?.strGlass}`);
 
   if (loading) return <Loader />;
 

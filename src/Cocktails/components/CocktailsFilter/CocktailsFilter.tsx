@@ -21,8 +21,8 @@ const CocktailsFilter: React.FC = () => {
   const { categories, loading: loadingCategories } = useFetchCategories();
   const { glasses, loading: loadingGlasses } = useFetchGlasses();
 
-  const currentCategory = searchParams.get('category') ?? '';
-  const currentGlass = searchParams.get('glass') ?? '';
+  const currentCategory: string = searchParams.get('category') ?? '';
+  const currentGlass: string = searchParams.get('glass') ?? '';
 
   const getCategoryOptions = useCallback((categories: Category[] | null): SelectOption[] => {
     if (!categories) return [];
@@ -42,24 +42,23 @@ const CocktailsFilter: React.FC = () => {
     }));
   }, []);
 
-  const categoryOptions = getCategoryOptions(categories);
-  const glassOptions = getGlassOptions(glasses);
+  const categoryOptions: SelectOption[] = getCategoryOptions(categories);
+  const glassOptions: SelectOption[] = getGlassOptions(glasses);
 
   const handleOption = (event: React.ChangeEvent<HTMLSelectElement>): void => {
     const { name, value } = event.target;
     searchParams.delete('id');
 
-    const newPathname = location.pathname.replace(/\/\d+$/, '');
-    const newUrl = `${newPathname}?${name}=${value}`;
+    const newPathname: string = location.pathname.replace(/\/\d+$/, '');
 
-    navigate(newUrl, { replace: true });
+    navigate(`${newPathname}?${name}=${value}`, { replace: true });
   };
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target;
     searchParams.delete('id');
 
-    const newPathname = location.pathname.replace(/\/\d+$/, '');
+    const newPathname: string = location.pathname.replace(/\/\d+$/, '');
     let newUrl = `${newPathname}`;
     if (value) newUrl = `${newPathname}?${name}=${value}`;
 

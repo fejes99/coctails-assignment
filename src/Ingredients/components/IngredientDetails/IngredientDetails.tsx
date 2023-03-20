@@ -3,7 +3,7 @@ import { useFetchIngredientById } from '../../hooks/useFetchIngredients';
 import IngredientCocktails from '../IngredientCocktails/IngredientCocktails';
 import './IngredientDetails.css';
 
-const IngredientDetails = () => {
+const IngredientDetails: React.FC = () => {
   const { ingredient, loading } = useFetchIngredientById();
 
   if (loading) return <Loader />;
@@ -22,7 +22,7 @@ const IngredientDetails = () => {
             <div className='detail-columns'>
               <div className='ingredient-alcohol'>
                 <strong>Alcohol: </strong>
-                {ingredient?.strAlcohol === 'Yes'
+                {ingredient?.strAlcohol === 'Yes' && ingredient?.strABV !== null
                   ? `${ingredient?.strABV}‰`
                   : ingredient?.strAlcohol}
               </div>

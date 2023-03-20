@@ -24,15 +24,15 @@ export const useFetchCocktails = (): FetchCocktailsResult => {
   const [searchParams] = useSearchParams();
 
   useEffect(() => {
-    const alcohol = location.pathname.substring(
+    const alcohol: CocktailType = location.pathname.substring(
       location.pathname.lastIndexOf('/') + 1
     ) as CocktailType;
-    const name = searchParams.get('name');
-    const firstLetter = searchParams.get('firstLetter');
-    const category = searchParams.get('category');
-    const glass = searchParams.get('glass');
+    const name: string | null = searchParams.get('name');
+    const firstLetter: string | null = searchParams.get('firstLetter');
+    const category: string | null = searchParams.get('category');
+    const glass: string | null = searchParams.get('glass');
 
-    let url = '';
+    let url: string = '';
 
     if (alcohol) url = `/filter.php?a=${alcohol}`;
     if (name) url = `/search.php?s=${name}`;

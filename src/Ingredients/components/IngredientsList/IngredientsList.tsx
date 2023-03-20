@@ -1,12 +1,12 @@
 import { useState } from 'react';
 
 import './IngredientsList.css';
-import Loader from '../../../components/Loader/Loader';
-import { useFetchIngredients } from '../../hooks/useFetchIngredients';
-import IngredientCard from './IngredientCard/IngredientCard';
 import { Ingredient } from '../../Ingredients.d';
-import Search from '../../../components/Search/Search';
+import { useFetchIngredients } from '../../hooks/useFetchIngredients';
 import { ingredientsFilter } from '../../helpers/IngredientsFilter';
+import Loader from '../../../components/Loader/Loader';
+import Search from '../../../components/Search/Search';
+import IngredientCard from './IngredientCard/IngredientCard';
 
 const IngredientsList: React.FC = () => {
   const [query, setQuery] = useState('');
