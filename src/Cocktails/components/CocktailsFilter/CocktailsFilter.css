@@ -36,6 +36,11 @@
   text-align: right;
 }
 
+.category-filter select,
+.glass-filter select {
+  cursor: pointer;
+}
+
 .glass-filter {
   text-align: left;
   margin-right: 10px;

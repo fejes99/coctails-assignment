@@ -35,7 +35,7 @@ const CocktailDetails: React.FC = () => {
 
   let typeUrl: string = cocktail?.strAlcoholic === 'Non alcoholic' ? 'non_alcoholic' : 'alcoholic';
 
-  const navigateAlcohol = (): void => navigate(`/${cocktail?.strAlcoholic}`);
+  const navigateAlcohol = (): void => navigate(`/cocktails/${typeUrl}`);
 
   const navigateCategory = (): void =>
     navigate(`/cocktails/${typeUrl}?category=${cocktail?.strCategory}`);
